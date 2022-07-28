@@ -1,0 +1,17 @@
+class Solution:
+    def repeatedCharacter(self, s: str) -> str:
+        dic = {}
+        for i in range(len(s)):
+                if s[i] in dic:
+                        dic[s[i]].append(i)
+                else:
+                    dic[s[i]] = [i, ]
+        print(dic)
+        least = 32000
+        key = ''
+        for k, v in dic.items():
+            if len(v) > 1:
+                if v[1] < least:
+                    least = v[1]
+                    key = k
+        return key
