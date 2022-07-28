@@ -1,0 +1,11 @@
+class Solution:
+    def search(self, nums: List[int], target: int) -> bool:
+        if nums[-1] <= target:
+            for i in reversed(range(len(nums))):
+                if nums[i] == target:
+                    return True
+        else:
+            for i in range(len(nums)):
+                if nums[i] == target:
+                    return True
+        return False
