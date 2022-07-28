@@ -1,0 +1,30 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        inlist = []
+        temp = list1
+        while(temp != None):
+            inlist.append(temp.val)
+            temp = temp.next
+        temp = list2
+        while(temp != None):
+            inlist.append(temp.val)
+            temp = temp.next
+        if len(inlist) == 0:
+            return None
+        inlist.sort()
+        head = ListNode()
+        head.val = inlist[0]
+        head.next = None
+        temp = head
+        for i in range(1, len(inlist)):
+            newnode = ListNode()
+            newnode.val = inlist[i]
+            newnode.next = None
+            temp.next = newnode
+            temp = newnode
+        return head
