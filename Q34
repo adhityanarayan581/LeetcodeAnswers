@@ -1,0 +1,16 @@
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        outlist = []
+        if target in nums:
+            sind = nums.index(target)
+        else:
+            return [-1, -1]
+        count = 1
+        prevcount = 1
+        for i in range(sind + 1, len(nums)):
+            if nums[i] == target:
+                prevcount = 1
+                count += 1
+                if prevcount == count:
+                    break
+        return [sind, sind + count - 1]
