@@ -1,0 +1,71 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def swapNodes(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        if head.next == None:
+            return head
+        
+        count = 0
+        
+        t1 = ListNode()
+        p1 = ListNode()
+        t2 = ListNode()
+        p2 = ListNode()
+        
+        t1 = head
+        while(t1 != None):
+            count += 1
+            t1 = t1.next
+        print(count)
+        if k > count:
+            return head
+        
+        if count == 2 and (k == 1 or k == 2):
+            t1 = head.next
+            t1.next = head
+            head = head.next
+            t1 = t1.next
+            t1.next = None
+            return head
+        
+        if k == 1 or k == count:
+            p1 = head
+            t1 = head
+            while t1.next != None:
+                p1 = t1
+                t1 = t1.next
+            t1.next = head.next
+            p1.next = head
+            head.next = None
+            head = t1
+            return head
+        
+        t1 = head
+        p1 = t1
+        i = 0
+        while(i < k - 1):
+            p1 = t1
+            t1 = t1.next
+            i += 1
+        
+        t2 = head
+        p2 = t2
+        i = 0
+        while (i < count - k):
+            p2 = t2
+            t2 = t2.next
+            i += 1
+        
+        if t1.next == t2.next:
+            return head
+        print(t1.val, t2.val)
+        p1.next = t2
+        p1 = p1.next
+        p1 = p1.next
+        p2.next = t1
+        t2.next = t1.next                    
+        t1.next = p1
+        return head
