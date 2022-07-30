@@ -1,0 +1,38 @@
+class Solution:
+    def myAtoi(self, s: str) -> int:
+        i = 0
+        if len(s) == 0:
+            return 0
+        while s[i] == ' ':
+            i += 1
+            if i >= len(s):
+                return 0
+            
+        sign = '+'
+        if s[i] == '+' or s[i] == '-':
+            sign = s[i]
+            i += 1
+            if i >= len(s):
+                return 0
+        outstr = ''
+        
+        
+        if s[i].isdigit() == False:
+            return 0
+        
+        while s[i].isdigit() == True:
+            outstr += s[i]
+            i += 1
+            if i >= len(s):
+                break
+        
+        val = int(outstr)
+        if sign == '-':
+            val = -1 * val
+        
+        if val < (-1 * pow(2, 31)):
+            val = -1 * pow(2, 31)
+        elif val > (pow(2, 31) - 1):
+            val = pow(2, 31) - 1
+        return val
+        
