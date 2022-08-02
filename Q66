@@ -1,0 +1,12 @@
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        instr = ''
+        for i in digits:
+            instr += str(i)
+        instr = int(instr)
+        instr += 1
+        instr = str(instr)
+        digits.clear()
+        for i in instr:
+            digits.append(i)
+        return digits
