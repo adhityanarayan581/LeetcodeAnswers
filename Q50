@@ -1,0 +1,22 @@
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        pro = 1
+        if n == 0 or x == 1.0000:
+            return 1
+        if n % 2 != 0 and x == -1.0000:
+            return -1.00000
+        if n % 2 == 0 and x == -1.0000:
+            return 1
+        if n > 0:
+            for i in range(n):
+                pro *= x
+                if abs(pro) < 0.000000000001:
+                    return 0
+            return pro
+        if n < 0:
+            for i in range(abs(n)):
+                pro = pro / x
+                if abs(pro) < 0.000000000001:
+                    return 0
+            return pro
+        
