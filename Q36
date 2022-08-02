@@ -1,0 +1,38 @@
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        for i in range(9):
+            for k in board[i]:
+                if k.isdigit() == True:
+                    if board[i].count(k) > 1:
+                        return False
+        
+        col = []
+        for i in range(9):
+            temp = []
+            for j in range(9):
+                temp.append(board[j][i])
+            col.append(temp)
+            
+        for i in range(9):
+            for k in col[i]:
+                if k.isdigit() == True:
+                    if col[i].count(k) > 1:
+                        return False
+        box = []
+        for m in range(0, 9, 3):
+            for k in range(0, 9, 3):
+                val = m + 3
+                temp = []
+                for i in range(m, val):
+                    num = k + 3
+                    for j in range(k, num):
+                        temp.append(board[i][j])
+                box.append(temp)
+        
+        for i in range(9):
+            for k in box[i]:
+                if k.isdigit() == True:
+                    if box[i].count(k) > 1:
+                        return False
+        
+        return True
