@@ -1,0 +1,33 @@
+class Solution:
+    def findcrossingsubarray(self, nums, start, mid, end):
+        leftsum = -10000
+        temp = 0
+        for i in range(mid - 1, start - 1, -1):
+            temp += nums[i]
+            if temp > leftsum:
+                leftsum = temp
+        
+        rightsum = -10000
+        temp = 0
+        for i in range(mid, end):
+            temp += nums[i]
+            if temp > rightsum:
+                rightsum = temp
+        
+        return (leftsum + rightsum)
+        
+    def findmaxsubarray(self, nums, start, end):
+        if start == end - 1:
+            return nums[start]
+        else:
+            mid = (start + end) // 2
+            leftmax  = self.findmaxsubarray(nums, start, mid)
+            rightmax = self.findmaxsubarray(nums, mid,   end)
+            crossmax = self.findcrossingsubarray(nums, start, mid, end)
+            return max(leftmax, rightmax, crossmax)
+            
+    def maxSubArray(self, nums: List[int]) -> int:
+        start = 0
+        end = len(nums)
+        ans = self.findmaxsubarray(nums, start, end)
+        return ans
